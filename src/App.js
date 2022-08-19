@@ -31,16 +31,22 @@ const list = [
   },
 ];
 
-const App = ()=> (
-    <div>
-      <h1>{getTitle("React")}</h1>
-        <label htmlFor="search">Search: </label>
-        <input id="search" type="text"/>
+const App = ()=> {
+    const handleChange = event =>{
+        console.log(event);
+    }
+    return (
+        <div>
+            <h1>{getTitle("React")}</h1>
+            <label htmlFor="search">Search: </label>
+            <input id="search" type="text" onChange={handleChange}/>
 
-      <hr />
-      <List />
-    </div>
-);
+            <hr />
+            <List />
+        </div>
+    );
+}
+
 
 const List = ()=>
    list.map((item) =>
