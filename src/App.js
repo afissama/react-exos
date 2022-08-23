@@ -34,25 +34,40 @@ const App = ()=> {
             objectID: 1,
         },
     ];
-    const [searchTerm, setSearchTerm] = React.useState('');
-    const handleChange = event =>{
-        setSearchTerm(event.target.value)
+    // A - Callback function gets introduced
+    const  handleSearch = event => {
+        //it call back
+        console.log(event.target.value);
     }
+
     return (
         <div>
             <h1>{getTitle("React")}</h1>
-            <label htmlFor="search">Search: </label>
-            <input id="search" type="text" onChange={handleChange}/>
-            <p>
-                Searching for <strong>{searchTerm}</strong>
-            </p>
+            <Search onSearch={handleSearch} />
             <hr />
             <List list={stories} />
         </div>
     );
 }
 
+const Search = (props) => {
+    const [searchTerm, setSearchTerm] = React.useState('');
+    const handleChange = event =>{
+        setSearchTerm(event.target.value);
+        //B - The callback is used elsewhere
+        props.onSearch(event);
+    }
 
+    return(
+        <div>
+            <label htmlFor="search">Search: </label>
+            <input id="search" type="text" onChange={handleChange}/>
+            <p>
+                Searching for <strong>{searchTerm}</strong>
+            </p>
+        </div>
+    )
+}
 const List =  props =>
     props.list.map((item) =>
      (
