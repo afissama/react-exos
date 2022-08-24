@@ -34,14 +34,14 @@ const App = ()=> {
             objectID: 1,
         },
     ];
-    const [searchTerm, setSearchTerm] = React.useState('');
+    const [searchTerm, setSearchTerm] = React.useState('React');
     // A - Callback function gets introduced
     const  handleSearch = event => {
         //it call back
         setSearchTerm(event.target.value);
     }
     const searchedStories = stories.filter( (story) =>
-        (story.title.toLowerCase().includes(searchTerm) )
+        (story.title.toLowerCase().includes(searchTerm.toLowerCase()) )
     );
 
     return (
@@ -60,7 +60,7 @@ const Search = (props) => {
     return(
         <div>
             <label htmlFor="search">Search: </label>
-            <input id="search" type="text" onChange={props.onSearch}/>
+            <input id="search" type="text" value={props.searchTerm} onChange={props.onSearch}/>
             <p>
                 Searching for <strong>{props.searchTerm}</strong>
             </p>
